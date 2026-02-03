@@ -6,71 +6,22 @@
     xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" 
     xsi:type="TaskPaneApp">
 
-  <Id>7bd34200-833d-4952-9657-3a1040858694</Id>
-  <Version>1.0.0.0</Version>
-  <ProviderName>Инжиниринг Групп</ProviderName>
+  <Id>55342000-833d-4952-9657-3a1040858694</Id> <Version>1.0.0.0</Version>
+  <ProviderName>MyDevName</ProviderName>
   <DefaultLocale>ru-RU</DefaultLocale>
-  <DisplayName DefaultValue="Мои Инструменты ВОР" />
-  <Description DefaultValue="Автоматизация ведомостей объемов работ"/>
+  <DisplayName DefaultValue="Моя Надстройка" />
+  <Description DefaultValue="Тестовая надстройка для Excel"/>
+  
+  <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-32.png" />
+  <SupportUrl DefaultValue="https://github.com/vla-dika/cdg-xls-add" />
 
   <Hosts>
     <Host Name="Workbook" />
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://vla-dika.github.io/cdg-xls-add/index.html" />
+    <SourceLocation DefaultValue="https://vla-dika.github.io/cdg-xls-add" />
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
-
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
-    <Hosts>
-      <Host xsi:type="Workbook">
-        <DesktopFormFactor>
-          <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <CustomTab id="Contoso.Tab1">
-              <Label resid="TabLabel" />
-              <Group id="Contoso.Group1">
-                <Label resid="GroupLabel" />
-                <Control xsi:type="Button" id="Contoso.Button1">
-                  <Label resid="ButtonLabel" />
-                  <Supertip>
-                    <Title resid="ButtonLabel" />
-                    <Description resid="ButtonToolTip" />
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16" />
-                    <bt:Image size="32" resid="Icon.32x32" />
-                    <bt:Image size="80" resid="Icon.80x80" />
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Url" />
-                  </Action>
-                </Control>
-              </Group>
-            </CustomTab>
-          </ExtensionPoint>
-        </DesktopFormFactor>
-      </Host>
-    </Hosts>
-
-    <Resources>
-      <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-16.png" />
-        <bt:Image id="Icon.32x32" DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-32.png" />
-        <bt:Image id="Icon.80x80" DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-80.png" />
-      </bt:Images>
-      <bt:Urls>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://vla-dika.github.io/cdg-xls-add/index.html" />
-      </bt:Urls>
-      <bt:ShortStrings>
-        <bt:String id="TabLabel" DefaultValue="ВОР Инструменты" />
-        <bt:String id="GroupLabel" DefaultValue="Шаблоны" />
-        <bt:String id="ButtonLabel" DefaultValue="Открыть панель ВОР" />
-      </bt:ShortStrings>
-      <bt:LongStrings>
-        <bt:String id="ButtonToolTip" DefaultValue="Нажмите, чтобы открыть панель управления шаблонами ВОР" />
-      </bt:LongStrings>
-    </Resources>
-  </VersionOverrides>
 </OfficeApp>
