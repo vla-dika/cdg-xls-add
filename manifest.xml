@@ -12,7 +12,7 @@
   <DisplayName DefaultValue="Моя Надстройка" />
   <Description DefaultValue="Тестовая надстройка для Excel"/>
   
-  <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-32.png" />
+  <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add" />
   <SupportUrl DefaultValue="https://github.com/vla-dika/cdg-xls-add" />
 
   <Hosts>
