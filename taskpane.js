@@ -1,25 +1,39 @@
-// Ждем, пока Office.js загрузится
 Office.onReady((info) => {
     if (info.host === Office.HostType.Excel) {
-        document.getElementById("run-button").onclick = run;
+        document.getElementById("fill-table").onclick = fillCableData;
     }
 });
 
-async function run() {
+async function fillCableData() {
     try {
         await Excel.run(async (context) => {
-            // Получаем активный лист
             const sheet = context.workbook.worksheets.getActiveWorksheet();
-            // Выбираем ячейку A1
-            const range = sheet.getRange("A1");
-            // Записываем текст и делаем его жирным
-            range.values = [["Привет из GitHub Pages, Андр12331223123123123ей!"]];
-            range.format.font.bold = true;
             
-            // Синхронизируем изменения с Excel
+            // Заголовки таблицы
+            const headers = [["№ п/п", "Материал", "Ед. изм.", "Кол-во", "СТ, тыс. руб."]];
+            
+            // Данные из вашего скриншота
+            const data = [
+                ["1", "Кабель ППГнг(А) HF 1х120", "км", 0.08, 99]
+            ];
+
+            // 1. Очищаем диапазон и вставляем заголовки
+            const headerRange = sheet.getRange("A1:E1");
+            headerRange.values = headers;
+            headerRange.format.font.bold = true;
+            headerRange.format.fill.color = "#D3D3D3"; // Серый цвет заголовка
+
+            // 2. Вставляем данные под заголовками
+            const dataRange = sheet.getRange("A2:E2");
+            dataRange.values = data;
+
+            // 3. Автоподбор ширины колонок
+            headerRange.getUsedRange().format.autofitColumns();
+
             await context.sync();
+            console.log("Данные успешно добавлены!");
         });
     } catch (error) {
-        console.error("Ошибка: " + error);
+        console.error(error);
     }
 }
