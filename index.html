@@ -2,23 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Моя надстройка Excel</title>
+    <title>Загрузка кабеля</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
+        body { padding: 15px; font-family: 'Segoe UI', sans-serif; }
         button { 
             background-color: #217346; color: white; border: none; 
-            padding: 10px 20px; cursor: pointer; width: 100%; 
+            padding: 10px 20px; cursor: pointer; border-radius: 4px; 
         }
         button:hover { background-color: #1a5a37; }
     </style>
 </head>
 <body>
-    <h3>Инструменты разработки</h3>
-    <p>Нажмите кнопку, чтобы записать данные в таблицу:</p>
-    <button id="run-button">Заполнить ячейку</button>
+    <h3>Данные из ведомости</h3>
+    <button id="fill-table">Заполнить таблицу кабеля</button>
+
     <script src="taskpane.js"></script>
-    
 </body>
 </html>
