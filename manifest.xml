@@ -2,23 +2,26 @@
 <OfficeApp 
     xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+    xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" 
     xsi:type="TaskPaneApp">
-  
-  <Id>6f1d86d3-2e3d-4c7c-8e6f-123456789abc</Id> <Version>1.0.0.0</Version>
-  <ProviderName>Моя Команда</ProviderName>
+
+  <Id>55342000-833d-4952-9657-3a1040858694</Id> <Version>1.0.0.0</Version>
+  <ProviderName>MyDevName</ProviderName>
   <DefaultLocale>ru-RU</DefaultLocale>
-  <DisplayName DefaultValue="Моя первая надстройка" />
-  <Description DefaultValue="Пример надстройки с автообновлением через GitHub" />
+  <DisplayName DefaultValue="Моя Надстройка" />
+  <Description DefaultValue="Тестовая надстройка для Excel"/>
   
-  <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add/" />
-  
+  <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-32.png" />
+  <SupportUrl DefaultValue="https://github.com/vla-dika/cdg-xls-add" />
+
   <Hosts>
     <Host Name="Workbook" />
   </Hosts>
-  
+
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://vla-dika.github.io/cdg-xls-add/"/>
+    <SourceLocation DefaultValue="https://vla-dika.github.io/cdg-xls-add" />
   </DefaultSettings>
-  
+
   <Permissions>ReadWriteDocument</Permissions>
 </OfficeApp>
