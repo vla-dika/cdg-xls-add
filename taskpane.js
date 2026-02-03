@@ -1,8 +1,7 @@
 Office.onReady((info) => {
     if (info.host === Office.HostType.Excel) {
         document.getElementById("fill-table").onclick = fillCableData;
-        document.getElementById("new-table").onclick = createVORSheet;
-        
+        document.getElementById("new-table").onclick = createVORSheet;       
     }
 });
 
@@ -11,7 +10,7 @@ async function fillCableData() {
         await Excel.run(async (context) => {
             const sheet = context.workbook.worksheets.getActiveWorksheet();
             
-            // Заголовки таблицы
+                // Заголовки таблицы
             const headers = [["№ п/п", "Материал", "Ед. изм.", "Кол-во", "СТ, тыс. руб."]];
             
             // Данные из вашего скриншота
