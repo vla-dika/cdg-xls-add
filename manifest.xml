@@ -10,14 +10,14 @@
   <DisplayName DefaultValue="Моя первая надстройка" />
   <Description DefaultValue="Пример надстройки с автообновлением через GitHub" />
   
-  <IconUrl DefaultValue="https://ВАШ_ЛОГИН.github.io/ИМЯ_РЕПОЗИТОРИЯ/icon.png" />
+  <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add/" />
   
   <Hosts>
     <Host Name="Workbook" />
   </Hosts>
   
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://ВАШ_ЛОГИН.github.io/ИМЯ_РЕПОЗИТОРИЯ/index.html" />
+    <SourceLocation DefaultValue="https://vla-dika.github.io/cdg-xls-add/"/>
   </DefaultSettings>
   
   <Permissions>ReadWriteDocument</Permissions>
