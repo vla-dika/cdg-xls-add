@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <title>Загрузка кабеля</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style>
-        body { padding: 15px; font-family: 'Segoe UI', sans-serif; }
-        button { 
-            background-color: #8a258a; color: white; border: none; 
-            padding: 10px 20px; cursor: pointer; border-radius: 4px; 
+        body {
+            padding: px;
+            font-family: 'Segoe UI', sans-serif;
         }
-        button:hover { background-color: #8a259a; }
+
+        button {
+            background-color: #8a258a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #8a259a;
+        }
     </style>
 </head>
+
 <body>
     <h3>Оформление</h3>
-    <button id="fill-table">Заполнить таблицу кабеля</button>
-    <button id="new-table">Создать новую таблицу</button>
+    <div>
+        <button id="fill-table">Заполнить таблицу кабеля</button>
+    </div>
+    <div>
+        <button id="new-table">Создать новую таблицу</button>
+    </div>
+
+
     <script src="taskpane.js"></script>
 </body>
+
 </html>
