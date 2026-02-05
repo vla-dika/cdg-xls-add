@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Надстройка ВОР</title>
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 15px;
+            /* Глубокий темно-синий футуристичный фон */
+            background: linear-gradient(135deg, #001220 0%, #002a4d 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            /* Эффект Liquid Glass (Жидкое стекло) */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .section-header {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00d4ff; /* Неоновый голубой */
+            margin-bottom: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header i { margin-right: 8px; }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        button {
+            /* Глубокий синий с градиентом */
+            background: linear-gradient(145deg, #004a8c, #003a6d);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: white;
+            padding: 12px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            display: list-item;
+            flex-direction: column; /* Иконка сверху над текстом */
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        button i {
+            font-size: 18px; /* Размер иконки */
+            color: #00d4ff;
+        }
+
+        button:hover {
+            background: #005bb5;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+            transform: translateY(-2px);
+            border-color: #00d4ff;
+        }
+
+        button:active { transform: translateY(0); }
+
+        /* Специальный стиль для важных кнопок */
+        .btn-accent {
+            background: linear-gradient(145deg, #00d4ff, #0078d4);
+            border: none;
+        }
+        .btn-accent i { color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <div class="section-header"><i class="ms-Icon ms-Icon--Color"></i> Оформление</div>
+        <div class="button-grid">
+            <button><i class="ms-Icon ms-Icon--Document Sync"></i> Новый ВОР</button>
+            <button><i class="ms-Icon ms-Icon--LineStyle"></i> Форматирование</button>
+            <button><i class="ms-Icon ms-Icon--CheckMark"></i> Проверить единицы измерения</button>
+            <button><i class="ms-Icon ms-Icon--EraseTool"></i> Очистить таблицу</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header"><i class="ms-Icon ms-Icon--LightningBolt"></i> Команды</div>
+        <div class="button-grid">
+            <button><i class="ms-Icon ms-Icon--Calculator"></i>Рассчитать</button>
+            <button><i class="ms-Icon ms-Icon--Share"></i>Экспорт</button>
+            <button><i class="ms-Icon ms-Icon--CheckMark"></i>Проверка</button>
+            <button><i class="ms-Icon ms-Icon--ReportDocument"></i>Отчет</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header"><i class="ms-Icon ms-Icon--Settings"></i> Прочее1</div>
+        <div class="button-grid">
+            <button><i class="ms-Icon ms-Icon--Help"></i>Справка</button>
+            <button><i class="ms-Icon ms-Icon--Settings"></i>Настройки</button>
+        </div>
+    </div>
+
+</body>
+</html>
