@@ -84,27 +84,104 @@
             border: none;
         }
         .btn-accent i { color: white; }
+
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Главная кнопка меню */
+    .dropbtn {
+        background: linear-gradient(145deg, #004a8c, #002a4d);
+        color: #00f2ff;
+        padding: 10px 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0, 242, 255, 0.3);
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+    }
+
+    /* Контент меню (стеклянный эффект) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background: rgba(0, 18, 32, 0.8);
+        backdrop-filter: blur(15px);
+        min-width: 180px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        z-index: 100;
+        margin-top: 5px;
+        overflow: hidden;
+    }
+
+    /* Кнопки внутри меню */
+    .dropdown-content button {
+        width: 100%;
+        padding: 12px 16px;
+        background: transparent;
+        border: none;
+        color: white;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        transition: 0.2s;
+    }
+
+    .dropdown-content button i {
+        color: #00f2ff;
+        font-size: 16px;
+    }
+
+    .dropdown-content button:hover {
+        background: rgba(0, 242, 255, 0.1);
+        color: #00f2ff;
+    }
+
+    /* Показать при наведении (можно заменить на JS клик) */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        border-color: #00f2ff;
+        box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    }
+
     </style>
+
 </head>
 <body>
 
     <div class="section">
         <div class="section-header"><i class="ms-Icon ms-Icon--Color"></i> Оформление</div>
         <div class="button-grid">
-            <button><i class="ms-Icon ms-Icon--Document Sync"></i> Новый ВОР</button>
-            <button><i class="ms-Icon ms-Icon--LineStyle"></i> Форматирование</button>
-            <button><i class="ms-Icon ms-Icon--CheckMark"></i> Проверить единицы измерения</button>
-            <button><i class="ms-Icon ms-Icon--EraseTool"></i> Очистить таблицу</button>
+            <button id="new-table"><i class="ms-Icon ms-Icon--Document Sync"></i> Новый ВОР</button>
+            <button id="formating"><i class="ms-Icon ms-Icon--LineStyle"></i> Форматирование</button>
+            <button id="change-units"><i class="ms-Icon ms-Icon--CheckMark"></i> Проверить единицы измерения</button>
+            <button id="cleane-tabel"><i class="ms-Icon ms-Icon--EraseTool"></i> Очистить таблицу</button>
         </div>
     </div>
 
     <div class="section">
         <div class="section-header"><i class="ms-Icon ms-Icon--LightningBolt"></i> Команды</div>
         <div class="button-grid">
-            <button><i class="ms-Icon ms-Icon--Calculator"></i>Рассчитать</button>
+            <button><i class="ms-Icon ms-Icon--Clipboard Number 123"></i> Сквозная нумерация</button>
             <button><i class="ms-Icon ms-Icon--Share"></i>Экспорт</button>
             <button><i class="ms-Icon ms-Icon--CheckMark"></i>Проверка</button>
             <button><i class="ms-Icon ms-Icon--ReportDocument"></i>Отчет</button>
+
+
         </div>
     </div>
 
