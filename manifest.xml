@@ -9,8 +9,8 @@
   <Id>55342000-833d-4952-9657-3a1040858694</Id> <Version>1.0.0.0</Version>
   <ProviderName>MyDevName</ProviderName>
   <DefaultLocale>ru-RU</DefaultLocale>
-  <DisplayName DefaultValue="Моя Надстройка" />
-  <Description DefaultValue="Тестовая надстройка для Excel"/>
+  <DisplayName DefaultValue="cdg-xls-add" />
+  <Description DefaultValue="Надстройка ВОР"/>
   
   <IconUrl DefaultValue="https://vla-dika.github.io/cdg-xls-add/icon-32.png" />
   <SupportUrl DefaultValue="https://github.com/vla-dika/cdg-xls-add" />
