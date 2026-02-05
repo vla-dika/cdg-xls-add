@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Future UI</title>
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
+    <!-- <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script> -->
+    <style>
+        :root {
+            --bg-color: #000b1a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-cyan: #00f2ff;
+            --deep-blue: #004a8c;
+            --hover-blue: #0078d4;
+        }
+
+        body {
+            margin: 0;
+            padding: 15px;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, #002a4d 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, #001220 0%, transparent 50%);
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Контейнер группы (Liquid Glass) */
+        .group-container {
+            margin-bottom: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .group-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        .group-title i { margin-right: 8px; }
+
+        /* Сетка кнопок */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        /* Кнопка в стиле "Deep Blue Glass" */
+        button {
+            background: linear-gradient(145deg, rgba(0, 74, 140, 0.6), rgba(0, 58, 109, 0.4));
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            padding: 12px 5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            backdrop-filter: brightness(1.2);
+        }
+
+        button i {
+            font-size: 20px;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        button:hover {
+            background: var(--hover-blue);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+            .dropdown {
+        position: relative;
+        display: inline-block;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Главная кнопка меню */
+    .dropbtn {
+        background: linear-gradient(145deg, #004a8c, #002a4d);
+        color: #00f2ff;
+        padding: 10px 20px;
+        font-size: 14px;
+        border: 1px solid rgba(0, 242, 255, 0.3);
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="group-container">
+        <div class="group-title"><i class="ms-Icon ms-Icon--Color"></i> Оформление</div>
+        <div class="button-grid">
+            <button><i class="ms-Icon ms-Icon--BackgroundColor"></i>Новый ВОР</button>
+            <button><i class="ms-Icon ms-Icon--FontColor"></i>Текст</button>
+            <button><i class="ms-Icon ms-Icon--Table"></i>Стиль табл.</button>
+            <button><i class="ms-Icon ms-Icon--ClearFormatting"></i>Сброс</button>
+        </div>
+    </div>
+
+    <div class="group-container">
+        <div class="group-title"><i class="ms-Icon ms-Icon--Repair"></i> Основные команды</div>
+        <div class="button-grid">
+            <button id="renumb-position"><i class="ms-Icon ms-Icon--Calculator"></i> Перенумеровать позиции</button>
+            <button><i class="ms-Icon ms-Icon--TriggerAuto"></i>Автопилот</button>
+            <button><i class="ms-Icon ms-Icon--DatabaseSync"></i>Обновить</button>
+            <button><i class="ms-Icon ms-Icon--Save"></i>Бэкап</button>
+        </div>
+    </div>
+
+    <div class="group-container">
+        <div class="group-title"><i class="ms-Icon ms-Icon--More"></i> Прочее</div>
+        <div class="button-grid">
+            <button><i class="ms-Icon ms-Icon--Settings"></i>Опции</button>
+            <button><i class="ms-Icon ms-Icon--Help"></i>Справка</button>
+        </div>
+    </div>
+
+</body>
+</html>
