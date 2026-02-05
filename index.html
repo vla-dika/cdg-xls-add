@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cdg-xls-add</title>
-    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <!-- <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script> -->
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">    
     <style>
         :root {
@@ -57,7 +57,7 @@
         /* Сетка кнопок */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
@@ -141,12 +141,13 @@
     </div>
 
     <div class="group-container">
-        <div class="group-title"><i class="ms-Icon ms-Icon--Repair"></i> Нумерация</div>
+        <div class="group-title"><i class="ms-Icon ms-Icon--Repair"></i>Основные инструменты</div>
         <div class="button-grid">
-            <button id="renumb-positions"><i class="ms-Icon ms-Icon--"></i> Позиций</button>
-            <button id="renumb-subpositions"><i class="ms-Icon ms-Icon--TriggerAuto"></i> Позиций с подразделами</button>
-            <button id="renumb-chapters"><i class="ms-Icon ms-Icon--DatabaseSync"></i>Разделов</button>
-            <button><i class="ms-Icon ms-Icon--Save"></i>Бэкап</button>
+            <button id="renumb-positions"><i class="ms-Icon ms-Icon--TriggerAuto"></i>Сквозная нумерация</button>
+            <button id="renumb-subpositions"><i class="ms-Icon ms-Icon--TriggerAuto"></i>Сквозная с подпозициями</button>
+            <button id="renumb-chapters"><i class="ms-Icon ms-Icon--DatabaseSync"></i>Нумерация разделов</button>
+            <button id="str-copy"><i class="ms-Icon ms-Icon--Save"></i>Копирование строк</button>
+            <button id="str-paste-top"><i class="ms-Icon ms-Icon--Save"></i>Вставить строки</button>
         </div>
     </div>
 
@@ -158,6 +159,6 @@
         </div>
     </div>
 
-    <script src="taskpane.js"></script>
+    <!-- <script src="taskpane.js"></script> -->
 </body>
 </html>
