@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excel Future UI</title>
-    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
     <!-- <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script> -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">    
     <style>
         :root {
             --bg-color: #000b1a;
@@ -57,8 +57,8 @@
         /* Сетка кнопок */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
 
         /* Кнопка в стиле "Deep Blue Glass" */
@@ -127,10 +127,11 @@
 </head>
 
 <body>
+    <h2 class=""> cdg-xls-add</h2>
     <div class="group-container">
-        <div class="group-title"><i class="ms-Icon ms-Icon--Color"></i> Оформление</div>
+        <div class="group-title"><i class="ms-Icon ms-Icon--Color"></i>Оформление</div>
         <div class="button-grid">
-            <button><i class="ms-Icon ms-Icon--BackgroundColor"></i>Новый ВОР</button>
+            <button><i class="ms-Icon ms-Icon--Table Stack Above"></i>Новый ВОР</button>
             <button><i class="ms-Icon ms-Icon--FontColor"></i>Текст</button>
             <button><i class="ms-Icon ms-Icon--Table"></i>Стиль табл.</button>
             <button><i class="ms-Icon ms-Icon--ClearFormatting"></i>Сброс</button>
@@ -138,12 +139,12 @@
     </div>
 
     <div class="group-container">
-        <div class="group-title"><i class="ms-Icon ms-Icon--Repair"></i> Основные команды</div>
+        <div class="group-title"><i class="ms-Icon ms-Icon--Repair"></i> Нумерация</div>
         <div class="button-grid">
-            <button id="renumb-position"><i class="ms-Icon ms-Icon--Calculator"></i> Перенумеровать позиции</button>
-            <button><i class="ms-Icon ms-Icon--TriggerAuto"></i>Автопилот</button>
-            <button><i class="ms-Icon ms-Icon--DatabaseSync"></i>Обновить</button>
-            <button><i class="ms-Icon ms-Icon--Save"></i>Бэкап</button>
+            <button id="renumb-positions"><i class="ms-Icon ms-Icon--"></i> Позиций</button>
+            <button id="renumb-subpositions"><i class="ms-Icon ms-Icon--TriggerAuto"></i> Позиций с подразделами</button>
+            <button id="renumb-chapters"><i class="ms-Icon ms-Icon--DatabaseSync"></i>Разделов</button>
+            <!-- <button><i class="ms-Icon ms-Icon--Save"></i>Бэкап</button> -->
         </div>
     </div>
 
