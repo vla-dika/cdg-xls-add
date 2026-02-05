@@ -132,10 +132,11 @@
     <div class="group-container">
         <div class="group-title"><i class="ms-Icon ms-Icon--Color"></i>Оформление</div>
         <div class="button-grid">
-            <button><i class="ms-Icon ms-Icon--Settings"></i>Новый ВОР</button>
-            <button><i class="ms-Icon ms-Icon--FontColor"></i>Текст</button>
-            <button><i class="ms-Icon ms-Icon--Table"></i>Стиль табл.</button>
-            <button><i class="ms-Icon ms-Icon--ClearFormatting"></i>Сброс</button>            
+            <button id="new-table" title="Создание новой формы ВОР"><i class="ms-Icon ms-Icon--Document Square"></i>Новый ВОР</button>
+            <button id="formating" title="Приводим таблицу к требованиям оформления. Исправляем шрифты, рамки и проч.">
+                <i class="ms-Icon ms-Icon--List Bar"></i>Форматировать</button>
+            <button id="clean"><i class="ms-Icon ms-Icon--ClearFormatting"></i>Очистить</button>
+            <button id="units"><i class="ms-Icon ms-Icon--ClearFormatting"></i>Единицы измерения</button>            
         </div>
     </div>
 
@@ -153,9 +154,10 @@
         <div class="group-title"><i class="ms-Icon ms-Icon--More"></i> Прочее</div>
         <div class="button-grid">
             <button><i class="ms-Icon ms-Icon--Settings"></i>Опции</button>
-            <button><i class="ms-Icon ms-Icon--Help"></i>Справка</button>
+            <button><i class="ms-Icon ms-Icon--Heart"></i>Справка</button>
         </div>
     </div>
-
+    
+    <script src="taskpane.js"></script>
 </body>
 </html>
