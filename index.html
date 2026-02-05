@@ -57,7 +57,7 @@
         /* Сетка кнопок */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
         }
 
@@ -111,7 +111,8 @@
     /* Главная кнопка меню */
     .dropbtn {
         background: linear-gradient(145deg, #004a8c, #002a4d);
-        color: #00f2ff;
+        /* color: #00f2ff; */
+        color: #000d0e;
         padding: 10px 20px;
         font-size: 14px;
         border: 1px solid rgba(0, 242, 255, 0.3);
@@ -127,14 +128,14 @@
 </head>
 
 <body>
-    <h2 class=""> cdg-xls-add</h2>
+    <h2>cdg-xls-add</h2>
     <div class="group-container">
         <div class="group-title"><i class="ms-Icon ms-Icon--Color"></i>Оформление</div>
         <div class="button-grid">
-            <button><i class="ms-Icon ms-Icon--Table Stack Above"></i>Новый ВОР</button>
+            <button><i class="ms-Icon ms-Icon--Settings"></i>Новый ВОР</button>
             <button><i class="ms-Icon ms-Icon--FontColor"></i>Текст</button>
             <button><i class="ms-Icon ms-Icon--Table"></i>Стиль табл.</button>
-            <button><i class="ms-Icon ms-Icon--ClearFormatting"></i>Сброс</button>
+            <button><i class="ms-Icon ms-Icon--ClearFormatting"></i>Сброс</button>            
         </div>
     </div>
 
@@ -144,7 +145,7 @@
             <button id="renumb-positions"><i class="ms-Icon ms-Icon--"></i> Позиций</button>
             <button id="renumb-subpositions"><i class="ms-Icon ms-Icon--TriggerAuto"></i> Позиций с подразделами</button>
             <button id="renumb-chapters"><i class="ms-Icon ms-Icon--DatabaseSync"></i>Разделов</button>
-            <!-- <button><i class="ms-Icon ms-Icon--Save"></i>Бэкап</button> -->
+            <button><i class="ms-Icon ms-Icon--Save"></i>Бэкап</button>
         </div>
     </div>
 
