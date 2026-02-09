@@ -1,7 +1,7 @@
 Office.onReady((info) => {
     if (info.host === Office.HostType.Excel) {
         document.getElementById("new-table").onclick = createNewTable;
-        // document.getElementById("formating").onclick = formatVORTable;
+        document.getElementById("renumb-positions").onclick = renumberPosition;
         
     }
 });
@@ -80,83 +80,90 @@ async function createNewTable() {
     }
 }
 
-
-// async function formatVORTable() {
-//     try {
-//         await Excel.run(async (context) => {
-//             const sheet = context.workbook.getActiveWorksheet();
+async function renumberPosition() {
+    try {
+        await Excel.run(async (context) => {
+            const sheet = context.workbook.getActiveWorksheet();
             
-//             // 1. Проверка структуры (как в блоке wsVOR)
-//             const checkRange = sheet.getRange("A1:B5");
-//             checkRange.load(["values"]);
-//             await context.sync();
+            // Определяем используемый диапазон для поиска последней строки
+            const usedRange = sheet.getUsedRange();
+            const lastRow = usedRange.getLastRow();
+            lastRow.load("rowIndex");
+            
+            // Проверка формата таблицы (ячейки A1 и A5/B5)
+            const checkRange = sheet.getRange("A1:B5");
+            checkRange.load("values");
+            
+            await context.sync();
 
-//             if (checkRange.values[0][0] !== "Документ") {
-//                 if (checkRange.values[4][0] === "№" || checkRange.values[4][1].startsWith("Наименование")) {
-//                     console.error("Макрос не настроен для формата МГЭ");
-//                     return;
-//                 } else {
-//                     console.error("Таблица ГГЭ не обнаружена");
-//                     return;
-//                 }
-//             }
+            let startRow;
+            const isGGE = checkRange.values[0][0] === "Документ";
+            const isMGE = checkRange.values[4][0] === "№" || (checkRange.values[4][1] && checkRange.values[4][1].toString().startsWith("Наименование"));
 
-//             // 2. Оптимизация (ScreenUpdating в JS не нужен, но расчеты можно отключить)
-//             context.workbook.application.calculationMode = Excel.CalculationMode.manual;
+            if (isGGE) {
+                startRow = 18; // В VBA i = 18
+            } else if (isMGE) {
+                startRow = 7;  // В VBA i = 7
+            } else {
+                // Аналог MsgBox в JS надстройках лучше делать через UI, здесь используем консоль или throw
+                console.error("Формат таблицы не распознан");
+                return;
+            }
 
-//             // 3. Замена текста "Раздел " на "Раздел: "
-//             const lastRowRange = sheet.getUsedRange().getLastRow();
-//             lastRowRange.load("rowIndex");
-//             await context.sync();
+            // Получаем диапазон столбца А с учетом найденного формата
+            const totalRows = lastRow.rowIndex + 1;
+            const rangeA = sheet.getRange(`A${startRow}:A${totalRows}`);
+            
+            // Загружаем значения и информацию об объединении
+            rangeA.load(["values", "address"]);
+            
+            // В Office JS проверка каждой ячейки на объединение в цикле медленная. 
+            // Получаем все объединенные области в этом диапазоне одним запросом.
+            const mergedAreas = rangeA.getMergedAreasOrNullObject();
+            mergedAreas.load("address");
 
-//             const rangeA = sheet.getRange(`A17:A${lastRowRange.rowIndex + 1}`);
-//             rangeA.load("values");
-//             await context.sync();
+            await context.sync();
 
-//             let valuesA = rangeA.values;
-//             for (let i = 0; i < valuesA.length; i++) {
-//                 if (valuesA[i][0] && valuesA[i][0].toString().startsWith("Раздел ")) {
-//                     valuesA[i][0] = valuesA[i][0].replace("Раздел ", "Раздел: ");
-//                 }
-//             }
-//             rangeA.values = valuesA;
+            let values = rangeA.values;
+            let counter = 0;
 
-//             // 4. Групповое форматирование шапки (ячейки D1-D13)
-//             const headerData = sheet.getRange("D1:D13");
-//             headerData.load("values");
-//             await context.sync();
-
-//             // Подсвечиваем пустые ячейки розовым
-//             for (let i = 0; i < 13; i++) {
-//                 // Пропускаем строки 3 и 9 (в VBA они пропущены: D1,2,4,5,6,7,8,10,11,12,13)
-//                 if ([2, 8].includes(i)) continue; 
+            for (let i = 0; i < values.length; i++) {
+                let currentRowIdx = startRow + i;
+                let cell = sheet.getRange(`A${currentRowIdx}`);
                 
-//                 if (!headerData.values[i][0]) {
-//                     sheet.getRange(`D${i + 1}`).format.fill.color = "#FF80FF";
-//                 }
-//             }
+                // Проверяем, является ли ячейка началом объединенной области
+                // В JS API работа с mergedAreas сложнее, упростим логику:
+                cell.load(["isMerged", "address"]);
+                await context.sync(); // Примечание: для скорости лучше загружать всё сразу, но здесь для наглядности
 
-//             // 5. Форматирование шрифтов и выравнивания
-//             const topArea = sheet.getRange("A1:I14");
-//             topArea.format.font.size = 11;
-//             topArea.getRange("A1:A14").format.horizontalAlignment = "Left";
-//             topArea.getRange("A1:A13").format.font.color = "#808080";
+                if (cell.isMerged) {
+                    let mergeArea = cell.getMergeArea();
+                    mergeArea.load("address");
+                    await context.sync();
 
-//             // 6. Вызов вспомогательных функций (форматирование таблицы)
-//             // В JS их нужно реализовать отдельно или вложить сюда
-//             await formatTableDesign(sheet);
+                    // Если адрес ячейки не совпадает с началом объединенной области - пропускаем
+                    let firstCellAddress = mergeArea.address.split(":")[0];
+                    if (cell.address !== firstCellAddress) {
+                        continue; 
+                    }
+                }
 
-//             // 7. Финализация (аналог Ctrl+Home и Zoom)
-//             context.workbook.application.calculationMode = Excel.CalculationMode.automatic;
-//             sheet.getRange("A1").select();
+                let cellValue = values[i][0] ? values[i][0].toString() : "";
+
+                // Условие: ячейка пустая или начинается с цифры
+                if (cellValue === "" || /^\d/.test(cellValue)) {
+                    counter++;
+                    values[i][0] = counter;
+                }
+            }
+
+            // Записываем обновленные значения обратно одним махом
+            rangeA.values = values;
             
-//             // Масштаб в Office JS API доступен через настройки представления (не во всех версиях)
-//             // sheet.activeView.zoom = 100; 
-
-//             await context.sync();
-//             console.log("Форматирование завершено");
-//         });
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+            await context.sync();
+            console.log("Нумерация позиций в столбце [A] выполнена.");
+        });
+    } catch (error) {
+        console.error("Ошибка при перенумерации: " + error);
+    }
+}
