@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel AI Liquid Glass - Deep Blue</title>
+    <!-- Иконки Fluent UI -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --deep-blue: #1e3a8a; /* Глубокий синий */
+            --accent-blue: #3b82f6; /* Акцентный синий */
+            --ai-gradient: linear-gradient(135deg, #1e40af, #7c3aed);
+        }
+
+        body {
+            /* Фон с более глубоким градиентом */
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            min-height: 100vh;
+            padding: 16px;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Главная карточка */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 24px;
+            width: 100%;
+            max-width: 360px;
+            color: white;
+        }
+
+        .liquid-header {
+            font-size: 18px;
+            font-weight: 800;
+            color: #f8fafc;
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .liquid-header i {
+            color: #60a5fa;
+        }
+
+        /* Контейнер аккордеона */
+        .glass-accordion {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-accordion-header {
+            padding: 14px 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 13px;
+            color: #e2e8f0;
+        }
+
+        .glass-accordion-header:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+            padding: 0 14px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-accordion.is-open .glass-accordion-content {
+            max-height: 200px;
+            padding: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-accordion.is-open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .chevron {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* Кнопки внутри меню */
+        .liquid-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 10px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #f1f5f9;
+        }
+
+        .liquid-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .liquid-button-ai {
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            color: #93c5fd;
+        }
+
+        /* Анимация Gemini */
+        .ai-text-sparkle {
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        #ai-result-panel {
+            margin-top: 16px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 16px;
+            padding: 14px;
+            font-size: 12px;
+            border-left: 4px solid #3b82f6;
+            display: none;
+            color: #cbd5e1;
+        }
+
+        .loader {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1 class="liquid-header">
+            <i class="ms-Icon ms-Icon--OfficeLogo" style="font-size: 22px;"></i>
+            Pro Smart Add-in
+        </h1>
+
+        <!-- Аккордеон: Базовые функции -->
+        <div class="glass-accordion" id="acc-data">
+            <div class="glass-accordion-header" onclick="toggleAcc('acc-data')">
+                <span><i class="ms-Icon ms-Icon--Database mr-2 text-blue-400"></i> Данные</span>
+                <i class="ms-Icon ms-Icon--ChevronDown chevron"></i>
+            </div>
+            <div class="glass-accordion-content">
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="liquid-button" onclick="action('Импорт')">
+                        <i class="ms-Icon ms-Icon--CloudDownload text-blue-300 text-lg"></i>
+                        <span class="text-[10px] uppercase font-bold text-blue-100">Импорт</span>
+                    </button>
+                    <button class="liquid-button" onclick="action('Экспорт')">
+                        <i class="ms-Icon ms-Icon--CloudUpload text-blue-300 text-lg"></i>
+                        <span class="text-[10px] uppercase font-bold text-blue-100">Экспорт</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Аккордеон: Редактирование -->
+        <div class="glass-accordion" id="acc-edit">
+            <div class="glass-accordion-header" onclick="toggleAcc('acc-edit')">
+                <span><i class="ms-Icon ms-Icon--EditPencil mr-2 text-blue-300"></i> Правка</span>
+                <i class="ms-Icon ms-Icon--ChevronDown chevron"></i>
+            </div>
+            <div class="glass-accordion-content">
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="liquid-button" onclick="action('Очистка')">
+                        <i class="ms-Icon ms-Icon--EraseTool text-blue-200 text-lg"></i>
+                        <span class="text-[10px] uppercase font-bold text-blue-100">Очистка</span>
+                    </button>
+                    <button class="liquid-button" onclick="action('Формат')">
+                        <i class="ms-Icon ms-Icon--Color text-blue-200 text-lg"></i>
+                        <span class="text-[10px] uppercase font-bold text-blue-100">Формат</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Аккордеон: Интеллект Gemini -->
+        <div class="glass-accordion is-open" id="acc-ai">
+            <div class="glass-accordion-header" onclick="toggleAcc('acc-ai')">
+                <span><i class="ms-Icon ms-Icon--LightningBolt mr-2 text-blue-400"></i> <span class="ai-text-sparkle">Gemini AI</span></span>
+                <i class="ms-Icon ms-Icon--ChevronDown chevron"></i>
+            </div>
+            <div class="glass-accordion-content">
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="liquid-button liquid-button-ai" onclick="runAi('анализ трендов')">
+                        <i class="ms-Icon ms-Icon--ExploreContentSingle text-lg"></i>
+                        <span class="text-[10px] uppercase font-bold">Анализ</span>
+                    </button>
+                    <button class="liquid-button liquid-button-ai" onclick="runAi('структура отчета')">
+                        <i class="ms-Icon ms-Icon--ReportDocument text-lg"></i>
+                        <span class="text-[10px] uppercase font-bold">Отчет</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Панель результата -->
+        <div id="ai-result-panel">
+            <div class="flex justify-between items-center mb-2 border-b border-white/10 pb-1">
+                <span class="text-[9px] font-black text-blue-400 uppercase tracking-widest">Инсайт Gemini</span>
+                <i class="ms-Icon ms-Icon--Cancel cursor-pointer text-gray-500" onclick="hideAi()"></i>
+            </div>
+            <div id="ai-output" class="text-blue-50 italic leading-snug"></div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = ""; 
+
+        function toggleAcc(id) {
+            document.getElementById(id).classList.toggle('is-open');
+        }
+
+        async function runAi(task) {
+            const panel = document.getElementById('ai-result-panel');
+            const output = document.getElementById('ai-output');
+            
+            panel.style.display = 'block';
+            output.innerHTML = '<div class="loader"></div> <span class="ml-2 text-blue-200">Gemini анализирует...</span>';
+
+            try {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Ты помощник в Excel. Кратко опиши, как сделать ${task} максимально эффективно.` }] }]
+                    })
+                });
+                const data = await res.json();
+                output.innerText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Ошибка ИИ";
+            } catch (e) {
+                output.innerText = "Сервис Gemini временно недоступен.";
+            }
+        }
+
+        function hideAi() { document.getElementById('ai-result-panel').style.display = 'none'; }
+        
+        function action(name) {
+            console.log("Выполнено:", name);
+        }
+    </script>
+</body>
+</html>
