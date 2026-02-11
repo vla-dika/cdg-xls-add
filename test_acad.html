@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoCAD JS Panel</title>
+    <script type="text/javascript" src="https://help.autodesk.com/view/OARX/2024/ENU/jsapi/Autodesk.AutoCAD.js"></script>
+</head>
+<body>
+    <h3>Моя надстройка</h3>
+    <button onclick="drawLine()">Нарисовать линию</button>
+
+    <script type="text/script">
+        function drawLine() {
+            // Выполняем стандартную команду AutoCAD через JS
+            // Синтаксис: команда, точка1, точка2, пустая строка для завершения
+            Acad.Editor.executeCommand("._LINE", "0,0,0", "100,100,0", "");
+        }
+    </script>
+</body>
+</html>
